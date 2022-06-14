@@ -1,0 +1,12 @@
+.add-card {
+  color: #5e6c84;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.add-card:hover {
+  color: #172b4d;
+  background-color: #ced1da;
+}
