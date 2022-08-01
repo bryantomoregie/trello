@@ -1,0 +1,14 @@
+.add-list {
+  background-color: hsl(211deg 24% 77% / 90%);
+  width: 20vw;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.add-list:hover {
+  background-color: hsl(211deg 11% 65% / 98%);
+}
