@@ -45,16 +45,15 @@ router.route("/register").post(async (req, res, next) => {
 //Creating login routes
 router.route("/login").post(async (req, res, next) => {
   try {
-    console.log(req);
     const { email, password } = req.body;
     //Check emptyness of the incoming data
     if (!email || !password) {
-      return res.json({ message: "Please enter all the details" });
+      throw new Error("Please enter all the detailss");
     }
     //Check if the user already exist or not
     const userExist = await userModel.findOne({ email: req.body.email });
     if (!userExist) {
-      return res.json({ message: "Wrong credentials" });
+      throw new Error("Wrong credentialss");
     }
     //Check password match
     const isPasswordMatched = await bcrypt.compare(
@@ -62,7 +61,10 @@ router.route("/login").post(async (req, res, next) => {
       userExist.password
     );
     if (!isPasswordMatched) {
-      return res.json({ message: "Wrong credentials pass" });
+      const error = new Error("Wrong credentials");
+      error.statusCode = 500;
+      error.statusMessage = error.message;
+      throw error;
     }
     const token = await jwt.sign(
       { id: userExist._id },
