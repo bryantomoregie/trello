@@ -9,7 +9,7 @@ let listSchema = require("../models/List");
 
 // CREATE List
 router.route("/create-list").post((req, res, next) => {
-  listSchema.create(req.body, (error, data) => {
+  listSchema.create({ ...req.body, userId: req.user._id }, (error, data) => {
     if (error) {
       return next(error);
     } else {
@@ -20,7 +20,7 @@ router.route("/create-list").post((req, res, next) => {
 
 // READ Lists
 router.route("/").get((req, res, next) => {
-  listSchema.find((error, data) => {
+  listSchema.find({ userId: req.user._id }, (error, data) => {
     if (error) {
       return next(error);
     } else {

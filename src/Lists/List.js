@@ -20,6 +20,7 @@ export default function List({ title, tickets, id, fetchLists }) {
   const handleClick = () => {
     fetch(`http://localhost:3001/list/delete-list/${id}`, {
       method: "DELETE",
+      credentials: "include",
     }).then(() => fetchLists());
   };
 

@@ -10,7 +10,7 @@ function Authentication() {
     return fetch("http://localhost:3001/user/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ email, password }),
       mode: "cors",
       credentials: "include",
     })

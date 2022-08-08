@@ -12,6 +12,10 @@ let listSchema = new Schema({
       description: { type: String },
     },
   ],
+  userId: {
+    type: Schema.Types.ObjectId,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("List", listSchema);
