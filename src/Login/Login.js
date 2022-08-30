@@ -6,7 +6,13 @@ export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login } = useAuth();
+  const { login, loading, loggedIn } = useAuth();
+
+  if (loading) return <div>Loading</div>;
+
+  if (loggedIn) {
+    navigate("/");
+  }
 
   const handleClick = (e) => {
     e.preventDefault();

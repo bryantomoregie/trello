@@ -1,6 +1,7 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const isAuthenticated = require("../middleware/auth.js");
 
 const router = express.Router();
 
@@ -9,6 +10,10 @@ const userModel = require("../Models/User");
 //Creating register route
 router.route("/register").post(async (req, res, next) => {
   try {
+    // const error = new Error("Test");
+    // error.statusCode = 500;
+    // error.statusMessage = "Testing Error";
+    // throw error;
     const { name, email, password } = req.body;
 
     //Check emptyness of the incoming data
@@ -93,5 +98,11 @@ router.route("/user").post(async (req, res, next) => {
     return res.json({ error: error });
   }
 });
+
+router
+  .route("/check-credentials")
+  .get(isAuthenticated, async (req, res, next) => {
+    res.json({});
+  });
 
 module.exports = router;
