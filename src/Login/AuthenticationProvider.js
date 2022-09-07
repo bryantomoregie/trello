@@ -46,18 +46,26 @@ function Authentication() {
       .catch((error) => console.log(error.message));
   };
 
-  const logout = () => {};
+  const logout = () => {
+    console.log("im running");
+    return fetch("http://localhost:3001/user/logout", {
+      method: "get",
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log("res", res);
+        setLoggedIn(false);
+        console.log("logout", loggedIn);
+      })
+      .catch((error) => console.warn(error));
+  };
 
   return {
     loggedIn,
     loading,
     login,
-    logout() {
-      return new Promise((res) => {
-        setLoggedIn(false);
-        res();
-      });
-    },
+    logout,
   };
 }
 

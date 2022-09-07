@@ -7,6 +7,7 @@ export default function Nav() {
   const navigate = useNavigate();
 
   const logOut = () => {
+    console.log("hello");
     logout();
     navigate("/login");
   };

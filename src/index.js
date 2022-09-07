@@ -6,13 +6,14 @@ import Register from "./Register";
 import { AuthenticationProvider } from "./Login/AuthenticationProvider";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Nav from "./Nav";
+import NotFound from "./404";
 import ProtectedRoute from "./Login/ProtectedRoute";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <AuthenticationProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <AuthenticationProvider>
         <Nav />
         <Routes>
           <Route exact path="/register" element={<Register />} />
@@ -26,9 +27,9 @@ root.render(
               </ProtectedRoute>
             }
           />
-          {/* <ProtectedRoute index element={<App />} /> */}
+          <Route element={<NotFound />} />
         </Routes>
-      </BrowserRouter>
-    </AuthenticationProvider>
+      </AuthenticationProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );

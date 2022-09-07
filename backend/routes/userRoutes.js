@@ -53,7 +53,7 @@ router.route("/login").post(async (req, res, next) => {
     const { email, password } = req.body;
     //Check emptyness of the incoming data
     if (!email || !password) {
-      throw new Error("Please enter all the detailss");
+      throw new Error("Please enter all the details");
     }
     //Check if the user already exist or not
     const userExist = await userModel.findOne({ email: req.body.email });
@@ -86,6 +86,16 @@ router.route("/login").post(async (req, res, next) => {
   }
 });
 
+//Creating logout routes
+router.route("/logout").get(async (req, res, next) => {
+  try {
+    res.clearCookie("access_token", { path: "/" });
+    return res.status(200);
+  } catch (error) {
+    return res.json({ error: error });
+  }
+});
+
 //Creating user routes to fetch users data
 router.route("/user").post(async (req, res, next) => {
   try {
@@ -106,3 +116,7 @@ router
   });
 
 module.exports = router;
+
+/* 
+Once authenticated, I need to next try and navigate to the page you were trying to hit. 
+*/
