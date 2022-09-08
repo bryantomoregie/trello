@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../styles/Register.css";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -36,6 +37,7 @@ export default function Register() {
         style={{ marginTop: "3rem" }}
       ></img>
       <form
+        className="register-form"
         onSubmit={handleClick}
         style={{
           display: "flex",
@@ -45,25 +47,45 @@ export default function Register() {
           marginTop: "3rem",
           boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
           padding: "25px 40px",
+          backgroundColor: "white",
+          gap: "1rem",
         }}
       >
-        <p style={{ color: "#5e6e84" }}>Sign up for your account</p>
+        <p style={{ color: "#5e6e84", textAlign: "center" }}>
+          Sign up for your account
+        </p>
         <input
-          placeholder="name"
+          placeholder="Enter Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          style={{
+            padding: "6px 3px",
+            border: "2px solid #dfe1e6",
+            borderRadius: 3,
+            fontWeight: "bolder",
+          }}
         ></input>
         <input
-          placeholder="email"
+          placeholder="Enter Email"
           value={email}
           type="email"
           onChange={(e) => setEmail(e.target.value)}
+          style={{
+            padding: "6px 3px",
+            border: "2px solid #dfe1e6",
+            borderRadius: 3,
+          }}
         ></input>
         <input
-          placeholder="password"
+          placeholder="Enter Password"
           value={password}
           type="password"
           onChange={(e) => setPassword(e.target.value)}
+          style={{
+            padding: "6px 3px",
+            border: "2px solid #dfe1e6",
+            borderRadius: 3,
+          }}
         ></input>
         <button>Sign Up</button>
       </form>

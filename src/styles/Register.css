@@ -1,0 +1,16 @@
+.register-form > input::placeholder {
+  font-weight: bold;
+  opacity: 0.5;
+  color: inherit;
+}
+
+.register-form > input {
+  color: #4d4d4d;
+}
+
+.register-form > button {
+  border: none;
+  border-radius: 3px;
+  padding: 1em;
+  color: #8c8c8c;
+}
