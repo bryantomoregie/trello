@@ -2,15 +2,36 @@
   font-weight: bold;
   opacity: 0.5;
   color: inherit;
+  font-weight: 300;
 }
 
 .register-form > input {
   color: #4d4d4d;
+  font-weight: 100;
 }
 
-.register-form > button {
+.register-form > .button {
   border: none;
   border-radius: 3px;
   padding: 1em;
   color: #8c8c8c;
+}
+
+.register-form > .button-success {
+  border: none;
+  border-radius: 3px;
+  padding: 1em;
+  background-color: #5aac44;
+  color: #fff;
+  cursor: pointer;
+}
+.login-link {
+  text-align: center;
+  text-decoration: none;
+  color: #0252cc;
+  font-weight: 300;
+}
+
+.login-link:hover {
+  text-decoration: underline;
 }

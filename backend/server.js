@@ -20,6 +20,9 @@ var corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(require("./routes"));
+app.use((err, req, res, next) => {
+  return res.status(500).json({ error: { message: err.message } });
+});
 
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost:27017/reactdb",

@@ -90,7 +90,7 @@ router.route("/login").post(async (req, res, next) => {
 router.route("/logout").get(async (req, res, next) => {
   try {
     res.clearCookie("access_token", { path: "/" });
-    return res.status(200);
+    return res.status(200).end();
   } catch (error) {
     return res.json({ error: error });
   }

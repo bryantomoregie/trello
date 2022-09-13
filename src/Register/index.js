@@ -1,12 +1,18 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useRef, useMemo } from "react";
+import { useNavigate, Link } from "react-router-dom";
+
 import "../styles/Register.css";
 
 export default function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const form = useRef();
   const navigate = useNavigate();
+
+  const formValid = useMemo(() => {
+    return form.current?.reportValidity();
+  }, [name, email, password]);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -20,6 +26,7 @@ export default function Register() {
       .catch(() => console.log("Help"));
   };
 
+  console.log(formValid);
   return (
     <div
       style={{
@@ -37,6 +44,7 @@ export default function Register() {
         style={{ marginTop: "3rem" }}
       ></img>
       <form
+        ref={form}
         className="register-form"
         onSubmit={handleClick}
         style={{
@@ -55,20 +63,23 @@ export default function Register() {
           Sign up for your account
         </p>
         <input
+          onInvalid={(e) => e.preventDefault()}
           placeholder="Enter Name"
+          required
           value={name}
           onChange={(e) => setName(e.target.value)}
           style={{
             padding: "6px 3px",
             border: "2px solid #dfe1e6",
             borderRadius: 3,
-            fontWeight: "bolder",
           }}
         ></input>
         <input
           placeholder="Enter Email"
+          required
           value={email}
           type="email"
+          onInvalid={(e) => e.preventDefault()}
           onChange={(e) => setEmail(e.target.value)}
           style={{
             padding: "6px 3px",
@@ -77,7 +88,9 @@ export default function Register() {
           }}
         ></input>
         <input
+          onInvalid={(e) => e.preventDefault()}
           placeholder="Enter Password"
+          required
           value={password}
           type="password"
           onChange={(e) => setPassword(e.target.value)}
@@ -87,8 +100,20 @@ export default function Register() {
             borderRadius: 3,
           }}
         ></input>
-        <button>Sign Up</button>
+        <button
+          className={formValid ? "button-success" : "button"}
+          disabled={formValid}
+        >
+          Sign Up
+        </button>
+        <hr />
+        <Link className="login-link" to="/login">
+          Already have an account? Log in
+        </Link>
       </form>
     </div>
   );
 }
+
+//https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reportValidity
+//https://expressjs.com/en/api.html#res.end

@@ -14,6 +14,7 @@ function Authentication() {
     })
       .then((res) => res.json())
       .then((res) => {
+        console.log(res);
         if (!res.error) {
           setLoggedIn(true);
           setLoading(false);
@@ -47,16 +48,12 @@ function Authentication() {
   };
 
   const logout = () => {
-    console.log("im running");
     return fetch("http://localhost:3001/user/logout", {
       method: "get",
       credentials: "include",
     })
-      .then((res) => res.json())
       .then((res) => {
-        console.log("res", res);
         setLoggedIn(false);
-        console.log("logout", loggedIn);
       })
       .catch((error) => console.warn(error));
   };

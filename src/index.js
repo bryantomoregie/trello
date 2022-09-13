@@ -27,7 +27,7 @@ root.render(
               </ProtectedRoute>
             }
           />
-          <Route element={<NotFound />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </AuthenticationProvider>
     </BrowserRouter>
