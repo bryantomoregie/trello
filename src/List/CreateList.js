@@ -20,7 +20,8 @@ export default function CreateList({ fetchLists, setShowAddList }) {
         if (res.status !== 200) {
           throw new Error(res.statusText);
         }
-        fetchLists();
+        await fetchLists();
+        setValue("");
       } catch (err) {
         console.log(err);
       }

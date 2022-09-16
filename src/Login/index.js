@@ -31,6 +31,8 @@ export default function Login() {
       <form onSubmit={handleClick}>
         <label>
           <input
+            required
+            type="email"
             value={email}
             placeholder="email"
             onChange={(e) => setEmail(e.target.value)}
@@ -38,6 +40,8 @@ export default function Login() {
         </label>
         <label>
           <input
+            required
+            type="password"
             value={password}
             placeholder="password"
             onChange={(e) => setPassword(e.target.value)}
@@ -45,7 +49,7 @@ export default function Login() {
         </label>
         <button>Log In</button>
       </form>
-      <button onClick={register}>Regiter</button>
+      <button onClick={register}>Register</button>
     </>
   );
 }

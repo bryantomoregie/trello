@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./styles/cardEditor.css";
 
 export default function CardEditor({
   title,
@@ -27,31 +28,16 @@ export default function CardEditor({
   };
 
   return (
-    <form onClick={(e) => e.stopPropagation()} onSubmit={handleSave}>
-      <div
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: "rgba(0, 0, 0, .7)",
-          zIndex: 1000,
-        }}
-        onClick={handleSave}
-      ></div>
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          zIndex: 1000,
-          width: "100%",
-        }}
-      >
+    <form
+      className="card-editor"
+      onClick={(e) => e.stopPropagation()}
+      onSubmit={handleSave}
+    >
+      <div className="card-editor__save" onClick={handleSave}></div>
+      <div className="card-editor__text-area">
         <textarea
           style={{ width: "100%" }}
-          rows={4}
+          rows={8}
           value={cardTitle}
           onChange={(e) => updateCardTitle(e.target.value)}
           autoFocus

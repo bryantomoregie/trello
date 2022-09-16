@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuth } from "./Login/AuthenticationProvider";
+import { useAuth } from "../Login/AuthenticationProvider";
 import { useNavigate } from "react-router-dom";
 
 export default function Nav() {

@@ -1,10 +1,13 @@
-import { useState } from "react";
-import Card from "../Cards/Card";
+import { useState, useEffect } from "react";
+import useDropdownMenu from "react-accessible-dropdown-menu-hook";
+
 import { faEllipsis, faX } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import useDropdownMenu from "react-accessible-dropdown-menu-hook";
-import AddCard from "../Cards/AddCard";
-import { useEffect } from "react";
+
+import Card from "../Card";
+import AddCard from "../Card/AddCard";
+
+import "./styles/index.css";
 
 export default function List({ title, tickets, id, fetchLists }) {
   const { buttonProps, itemProps, isOpen, setIsOpen } = useDropdownMenu(1);
@@ -54,13 +57,7 @@ export default function List({ title, tickets, id, fetchLists }) {
 
   return (
     <div className="list">
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
+      <div className="list__header">
         {showTitleInput ? (
           <input
             value={listTitle}
@@ -73,30 +70,22 @@ export default function List({ title, tickets, id, fetchLists }) {
           <h3 onClick={editTitle}>{title}</h3>
         )}
 
-        <div style={{ position: "relative" }}>
+        <div className="list__actions">
           <button
+            className="list__actions__button"
             {...buttonProps}
             onMouseOver={() => setButtonHover(true)}
             onMouseLeave={() => setButtonHover(false)}
             style={{
-              height: "fit-content",
-              border: "none",
-              cursor: "pointer",
               backgroundColor: buttonHover ? "#D8D8D8" : "inherit",
             }}
           >
             <FontAwesomeIcon icon={faEllipsis} />
           </button>
           <div
+            className="list__actions__options"
             style={{
               display: isOpen ? "block" : "none",
-              position: "absolute",
-              left: 0,
-              top: "1.5rem",
-              padding: "1rem",
-              boxShadow: "0 8px 16px -4px #091e4240, 0 0 0 1px #091e4214",
-              background: "white",
-              borderRadius: 3,
             }}
             role="menu"
           >

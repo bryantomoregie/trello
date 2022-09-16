@@ -1,14 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
-import List from "./Lists/List";
-import AddList from "./Lists/AddList";
-import "./styles/App.css";
-import "./styles/List.css";
+import List from "./List";
+import AddList from "./List/AddList";
+import "./App.css";
 
 function App() {
   const [lists, setLists] = useState([]);
 
   const fetchLists = useCallback(() => {
-    fetch("http://localhost:3001/list", {
+    return fetch("http://localhost:3001/list", {
       method: "GET",
       credentials: "include",
     })

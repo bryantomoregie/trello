@@ -1,0 +1,35 @@
+.list {
+  width: 20vw;
+  padding: 1em;
+  background-color: #f5f5f5;
+  border-radius: 2px;
+  height: fit-content;
+}
+
+.list__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.list__actions {
+  position: relative;
+  z-index: 999;
+}
+
+.list__actions__button {
+  height: fit-content;
+  border: none;
+  cursor: pointer;
+}
+
+.list__actions__options {
+  position: absolute;
+  left: 0;
+  top: 1.5rem;
+  padding: 1rem;
+  box-shadow: 0 8px 16px -4px #091e4240, 0 0 0 1px #091e4214;
+  background: white;
+  border-radius: 3;
+}

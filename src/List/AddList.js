@@ -1,6 +1,6 @@
 import { useState } from "react";
 import CreateList from "./CreateList";
-import "../styles/AddList.css";
+import "./styles/addList.css";
 
 export default function AddList({ fetchLists }) {
   const [showAddList, setShowAddList] = useState(true);

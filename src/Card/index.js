@@ -1,9 +1,12 @@
 import { useState } from "react";
+
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import CardEditor from "./CardEditor";
 import CardModal from "./CardModal";
-import "../styles/Card.css";
+
+import "./styles/index.css";
 
 export default function Card({ description, index, listId, fetchLists }) {
   const [hovered, setHovered] = useState(false);
@@ -35,15 +38,8 @@ export default function Card({ description, index, listId, fetchLists }) {
         onClick={() => setDisplayModal(true)}
         onMouseEnter={turnHoverOn}
         onMouseLeave={turnHoverOff}
-        style={{
-          padding: "1em",
-          marginBottom: "1em",
-          borderRadius: "5px",
-          cursor: "pointer",
-          position: "relative",
-        }}
       >
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div className="card__content">
           <strong>{description}</strong>
           {hovered ? (
             <FontAwesomeIcon
