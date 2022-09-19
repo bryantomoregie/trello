@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthenticationProvider";
 
+import RegisterOrLogin from "../RegisterOrLogin";
+
 export default function Login() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const { login, loading, loggedIn } = useAuth();
 
   if (loading) return <div>Loading</div>;
@@ -14,42 +14,12 @@ export default function Login() {
     navigate("/");
   }
 
-  const handleClick = (e) => {
+  const handleSubmit = (e, { email, password }) => {
     e.preventDefault();
-
     login(email, password).then(() => {
       navigate("/");
     });
   };
 
-  const register = () => {
-    navigate("/register");
-  };
-
-  return (
-    <>
-      <form onSubmit={handleClick}>
-        <label>
-          <input
-            required
-            type="email"
-            value={email}
-            placeholder="email"
-            onChange={(e) => setEmail(e.target.value)}
-          ></input>
-        </label>
-        <label>
-          <input
-            required
-            type="password"
-            value={password}
-            placeholder="password"
-            onChange={(e) => setPassword(e.target.value)}
-          ></input>
-        </label>
-        <button>Log In</button>
-      </form>
-      <button onClick={register}>Register</button>
-    </>
-  );
+  return <RegisterOrLogin handleSubmit={handleSubmit} />;
 }
