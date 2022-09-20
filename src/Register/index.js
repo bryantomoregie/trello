@@ -1,10 +1,10 @@
 import React from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import RegisterOrLogin from "../RegisterOrLogin";
 
 export default function Register() {
-  const { navigate } = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = (e, { name, email, password }) => {
     e.preventDefault();
@@ -15,7 +15,7 @@ export default function Register() {
     })
       .then((response) => console.log(response))
       .then(() => navigate("/login"))
-      .catch(() => console.log("Help"));
+      .catch((error) => console.log(error));
   };
 
   return <RegisterOrLogin register handleSubmit={handleSubmit} />;
