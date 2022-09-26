@@ -1,23 +1,51 @@
-.register-form > input::placeholder {
+.form-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #f9fafc;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 400px;
+  margin-top: 3rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 25px 40px;
+  background-color: white;
+  gap: 1rem;
+}
+
+.form > input::placeholder {
   font-weight: bold;
   opacity: 0.5;
   color: inherit;
   font-weight: 300;
 }
 
-.register-form > input {
-  color: #4d4d4d;
-  font-weight: 100;
+.form > p {
+  color: #5e6e84;
+  text-align: center;
 }
 
-.register-form > .button {
+.form > input {
+  color: #4d4d4d;
+  font-weight: 100;
+  padding: 6px 3px;
+  border: 2px solid #dfe1e6;
+  border-radius: 3;
+}
+
+.form > .button {
   border: none;
   border-radius: 3px;
   padding: 1em;
   color: #8c8c8c;
 }
 
-.register-form > .button-success {
+.form > .button-success {
   border: none;
   border-radius: 3px;
   padding: 1em;
@@ -25,6 +53,7 @@
   color: #fff;
   cursor: pointer;
 }
+
 .login-link {
   text-align: center;
   text-decoration: none;
@@ -34,4 +63,14 @@
 
 .login-link:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .form-container {
+    background-color: #fff;
+  }
+  .form {
+    box-shadow: none;
+    width: clamp(350px, 80%, 400px);
+  }
 }

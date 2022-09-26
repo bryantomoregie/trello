@@ -2,6 +2,8 @@ import React from "react";
 import { useAuth } from "../Login/AuthenticationProvider";
 import { useNavigate } from "react-router-dom";
 
+import "./index.css";
+
 export default function Nav() {
   const { logout, loggedIn } = useAuth();
   const navigate = useNavigate();
@@ -12,7 +14,7 @@ export default function Nav() {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "row-reverse" }}>
+    <div className="navigation">
       {loggedIn ? <button onClick={logOut}>Log Out</button> : null}
     </div>
   );
