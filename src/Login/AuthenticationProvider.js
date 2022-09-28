@@ -14,7 +14,6 @@ function Authentication() {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
         if (!res.error) {
           setLoggedIn(true);
           setLoading(false);
@@ -23,10 +22,18 @@ function Authentication() {
         }
       })
       .catch((err) => {
-        console.log(err.message);
+        console.log({ err });
         setLoading(false);
       });
   }, []);
+
+  // useEffect(() => {
+  //   fetch("http://localhost:3001/user/delete-users", {
+  //     method: "DELETE",
+  //   })
+  //     .then(() => setLoading(false))
+  //     .catch((err) => console.log(err));
+  // }, []);
 
   const login = (email, password) => {
     return fetch("http://localhost:3001/user/login", {
@@ -41,10 +48,11 @@ function Authentication() {
         if (!res.error) {
           setLoggedIn(true);
         } else {
+          console.log({ res });
           throw new Error(res.error.statusMessage);
         }
       })
-      .catch((error) => console.log(error.message));
+      .catch((error) => console.log({ error }));
   };
 
   const logout = () => {

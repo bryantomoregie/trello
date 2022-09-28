@@ -9,7 +9,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  width: 400px;
+  width: clamp(350px, 80%, 400px);
   height: 400px;
   margin-top: 3rem;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -71,6 +71,5 @@
   }
   .form {
     box-shadow: none;
-    width: clamp(350px, 80%, 400px);
   }
 }

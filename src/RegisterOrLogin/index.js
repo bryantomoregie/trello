@@ -10,7 +10,6 @@ export default function RegisterOrLogin({ register, handleSubmit }) {
   const form = useRef();
 
   const formValid = useMemo(() => {
-    console.log("usememo");
     return form.current?.reportValidity();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name, email, password]);
@@ -49,8 +48,8 @@ export default function RegisterOrLogin({ register, handleSubmit }) {
         <input
           onInvalid={(e) => e.preventDefault()}
           placeholder="Enter Password"
-          minLength={4}
-          maxLength={8}
+          // minLength={4}
+          // maxLength={8}
           required
           value={password}
           type="password"

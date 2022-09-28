@@ -10,10 +10,6 @@ const userModel = require("../Models/User");
 //Creating register route
 router.route("/register").post(async (req, res, next) => {
   try {
-    // const error = new Error("Test");
-    // error.statusCode = 500;
-    // error.statusMessage = "Testing Error";
-    // throw error;
     const { name, email, password } = req.body;
 
     //Check emptyness of the incoming data
@@ -58,7 +54,8 @@ router.route("/login").post(async (req, res, next) => {
     //Check if the user already exist or not
     const userExist = await userModel.findOne({ email: req.body.email });
     if (!userExist) {
-      throw new Error("Wrong credentialss");
+      throw "yo";
+      // throw new Error("User does not exist");
     }
     //Check password match
     const isPasswordMatched = await bcrypt.compare(
@@ -66,7 +63,7 @@ router.route("/login").post(async (req, res, next) => {
       userExist.password
     );
     if (!isPasswordMatched) {
-      const error = new Error("Wrong credentials");
+      const error = new Error("Please check password and try again");
       error.statusCode = 500;
       error.statusMessage = error.message;
       throw error;
@@ -82,6 +79,7 @@ router.route("/login").post(async (req, res, next) => {
       .cookie("access_token", { token: token })
       .json({ success: true, message: "LoggedIn Successfully" });
   } catch (error) {
+    console.log(error);
     return res.json({ error: error });
   }
 });
@@ -115,8 +113,15 @@ router
     res.json({});
   });
 
-module.exports = router;
+router.route("/delete-users").delete(async (req, res, next) => {
+  userModel
+    .deleteMany({ age: { $gte: 15 } })
+    .then(function () {
+      res.json({ message: "All users deleted" }); // Success
+    })
+    .catch(function (error) {
+      res.json({ error: error }); // Failure
+    });
+});
 
-/* 
-Once authenticated, I need to next try and navigate to the page you were trying to hit. 
-*/
+module.exports = router;
