@@ -22,7 +22,6 @@ function Authentication() {
         }
       })
       .catch((err) => {
-        console.log({ err });
         setLoading(false);
       });
   }, []);
@@ -48,11 +47,9 @@ function Authentication() {
         if (!res.error) {
           setLoggedIn(true);
         } else {
-          console.log({ res });
-          throw new Error(res.error.statusMessage);
+          throw new Error(res.error);
         }
-      })
-      .catch((error) => console.log({ error }));
+      });
   };
 
   const logout = () => {

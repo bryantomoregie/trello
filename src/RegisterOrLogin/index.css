@@ -65,6 +65,18 @@
   text-decoration: underline;
 }
 
+.status-banner {
+  border-radius: 3px;
+  padding: 1em;
+  color: white;
+  font-size: 14px;
+}
+
+.status-banner,
+.error {
+  background-color: #eb5a46;
+}
+
 @media (max-width: 640px) {
   .form-container {
     background-color: #fff;

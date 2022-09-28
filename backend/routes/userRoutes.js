@@ -54,7 +54,8 @@ router.route("/login").post(async (req, res, next) => {
     //Check if the user already exist or not
     const userExist = await userModel.findOne({ email: req.body.email });
     if (!userExist) {
-      throw "yo";
+      // eslint-disable-next-line no-throw-literal
+      throw "User does not exist";
       // throw new Error("User does not exist");
     }
     //Check password match
@@ -79,7 +80,6 @@ router.route("/login").post(async (req, res, next) => {
       .cookie("access_token", { token: token })
       .json({ success: true, message: "LoggedIn Successfully" });
   } catch (error) {
-    console.log(error);
     return res.json({ error: error });
   }
 });

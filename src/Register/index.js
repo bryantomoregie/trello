@@ -18,7 +18,7 @@ export default function Register() {
       .catch((error) => console.log(error));
   };
 
-  return <RegisterOrLogin register handleSubmit={handleSubmit} />;
+  return <RegisterOrLogin register submit={handleSubmit} />;
 }
 
 //https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reportValidity

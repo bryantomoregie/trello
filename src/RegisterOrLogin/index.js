@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import "./index.css";
 
-export default function RegisterOrLogin({ register, handleSubmit }) {
+export default function RegisterOrLogin({ register, submit, error }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,6 +14,13 @@ export default function RegisterOrLogin({ register, handleSubmit }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [name, email, password]);
 
+  const handleSubmit = (e) => {
+    submit(e, { email, name, password });
+    setName("");
+    setEmail("");
+    setPassword("");
+  };
+
   return (
     <div className="form-container">
       <img
@@ -22,11 +29,8 @@ export default function RegisterOrLogin({ register, handleSubmit }) {
         height={43}
         style={{ marginTop: "3rem" }}
       ></img>
-      <form
-        ref={form}
-        className="form"
-        onSubmit={(e) => handleSubmit(e, { name, email, password })}
-      >
+      <form ref={form} className="form" onSubmit={handleSubmit}>
+        {error ? <StatusBanner status="error" message={error} /> : null}
         <p>{register ? "Sign up for your account" : "Log in to Trello"}</p>
         {register ? (
           <input
@@ -71,4 +75,8 @@ export default function RegisterOrLogin({ register, handleSubmit }) {
       </form>
     </div>
   );
+}
+
+function StatusBanner({ status, message }) {
+  return <div className={`status-banner ${status}`}>{message}</div>;
 }
