@@ -52,8 +52,8 @@ export default function RegisterOrLogin({ register, submit, error }) {
         <input
           onInvalid={(e) => e.preventDefault()}
           placeholder="Enter Password"
-          // minLength={4}
-          // maxLength={8}
+          minLength={4}
+          maxLength={8}
           required
           value={password}
           type="password"

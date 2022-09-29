@@ -47,7 +47,7 @@ function Authentication() {
         if (!res.error) {
           setLoggedIn(true);
         } else {
-          throw new Error(res.error);
+          throw new Error(res.error.statusMessage);
         }
       });
   };

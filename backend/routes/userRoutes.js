@@ -54,9 +54,10 @@ router.route("/login").post(async (req, res, next) => {
     //Check if the user already exist or not
     const userExist = await userModel.findOne({ email: req.body.email });
     if (!userExist) {
-      // eslint-disable-next-line no-throw-literal
-      throw "User does not exist";
-      // throw new Error("User does not exist");
+      const error = new Error("User does not exist");
+      error.statusCode = 500;
+      error.statusMessage = error.message;
+      throw error;
     }
     //Check password match
     const isPasswordMatched = await bcrypt.compare(
